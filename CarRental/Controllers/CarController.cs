@@ -24,16 +24,25 @@ namespace CarRental.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCar(Car car)
+        public IActionResult AddCar(CarView car)
         {
             
             if (ModelState.IsValid)
             {
-                _context.Add(car);
+
+                Car obj = new()
+                {
+                    Make = car.Make,
+                    Model = car.Model,
+                    Variant = car.Variant,
+                    DailyPrice = car.DailyPrice,
+                    Color = car.Color
+                };
+
+                _context.Add(obj);
                 _context.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
-            Console.WriteLine("HERE");
             return View("Index");
         }
 

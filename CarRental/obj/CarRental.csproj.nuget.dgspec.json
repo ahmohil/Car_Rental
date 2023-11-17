@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\OneDrive\\Desktop\\Study\\New folder\\CarRental\\CarRental\\CarRental.csproj": {}
+    "C:\\Users\\PC\\OneDrive\\Desktop\\Git\\Car_Rental\\CarRental\\CarRental.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\OneDrive\\Desktop\\Study\\New folder\\CarRental\\CarRental\\CarRental.csproj": {
+    "C:\\Users\\PC\\OneDrive\\Desktop\\Git\\Car_Rental\\CarRental\\CarRental.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\OneDrive\\Desktop\\Study\\New folder\\CarRental\\CarRental\\CarRental.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\OneDrive\\Desktop\\Git\\Car_Rental\\CarRental\\CarRental.csproj",
         "projectName": "CarRental",
-        "projectPath": "C:\\Users\\PC\\OneDrive\\Desktop\\Study\\New folder\\CarRental\\CarRental\\CarRental.csproj",
+        "projectPath": "C:\\Users\\PC\\OneDrive\\Desktop\\Git\\Car_Rental\\CarRental\\CarRental.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\OneDrive\\Desktop\\Study\\New folder\\CarRental\\CarRental\\obj\\",
+        "outputPath": "C:\\Users\\PC\\OneDrive\\Desktop\\Git\\Car_Rental\\CarRental\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
