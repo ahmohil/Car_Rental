@@ -1,15 +1,30 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using CarRental.Data;
 using CarRental.Areas.Identity.Data;
+using System.Configuration;
+using CarRental.Context;
+using Microsoft.EntityFrameworkCore.Migrations;
+
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+var connectionString = builder.Configuration.GetConnectionString("AuthDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AuthDbContextConnection' not found.");
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString, o => o.MigrationsHistoryTable(HistoryRepository.DefaultTableName, "Auth")));
+
+builder.Services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(connectionString, o => o.MigrationsHistoryTable(HistoryRepository.DefaultTableName, "App")));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<AuthDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireUppercase = false;
+});
 
 var app = builder.Build();
 
@@ -17,11 +32,7 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
 }
-
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
@@ -31,5 +42,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
+
 
 app.Run();
