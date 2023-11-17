@@ -1,0 +1,85 @@
+﻿@model CarRental.Models.Car
+
+@{
+    ViewData["title"] = "Add Product";
+}
+
+
+<style>
+    form {
+        display: grid;
+        place-items: center;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, auto);
+        gap: 30px;
+    }
+
+    fieldset {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto, auto;
+        width: 100%;
+        gap: 5px;
+    }
+
+    input[type=text], textarea, input[type=number] {
+        width: 100%;
+        border-radius: 5px;
+        outline: none;
+        border: 2px solid rgba(0,0,0, 0.3);
+        padding-inline: 10px;
+    }
+
+        input[type=text]:focus, textarea:focus, input[type=number]:focus {
+            border: 2px solid black;
+        }
+
+    input[type=text], input[type=number] {
+        height: 40px;
+    }
+
+    label {
+        cursor: pointer;
+    }
+
+    button {
+        outline: none;
+        border: none;
+        border-radius: 8px;
+        background-color: rgb(72 121 178);
+        color: white;
+        padding-inline: 50px;
+        padding-block: 5px;
+    }
+
+        button:hover {
+            background-color: rgb(85 130 185);
+        }
+</style>
+
+<h2>Add Car 2</h2>
+<form asp-action="AddCar" method="post">
+    <fieldset>
+    <label for="Make"> Make</label>
+    <input type="text" asp-for="Make" id="Make" />
+    </fieldset>
+
+    <fieldset>
+    <label for="Model">Model</label>
+        <input type="text" asp-for="Model" id="Model" />
+    </fieldset>
+    <fieldset>
+    <label for="Variant">Variant</label>
+        <input type="number" asp-for="Variant" id="Variant" />
+    </fieldset>
+        <fieldset>
+    <label for="Color">Color </label>
+    <input type="text" asp-for="Color" id="Color" />
+    </fieldset>
+            <fieldset>
+    <label for="<fieldset>Rate">Daily Price</label>
+        <input type="number" asp-for="DailyPrice" id="Rate" />
+    </fieldset>
+
+    <button type="submit">Add Car</button>
+</form>
