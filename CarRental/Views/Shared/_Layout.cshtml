@@ -13,9 +13,9 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CarRental</a>
-                <a class="navbar-brand" asp-area="" asp-controller="Car" asp-action="Index">Cars</a>
-                <a class="navbar-brand" asp-area="" asp-controller="Car" asp-action="AddCar">Add Car</a>
+                <a class="navbar-brand logo"  asp-area="" asp-controller="Home" asp-action="Index">CarRental</a>
+                <a class="navbar-brand nav-el" asp-area="" asp-controller="Car" asp-action="Index">Cars</a>
+                <a class="navbar-brand nav-el" asp-area="" asp-controller="Car" asp-action="AddCar">Add Car</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -43,3 +43,16 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<style>
+    .logo {
+        margin-right: 50px;
+    }
+    .nav-el {
+        padding-inline: 12px;
+        padding-block: 5px;
+    }
+    .nav-el:hover {
+           background-color: rgb(0,0,0,0.1);
+    }
+</style>
