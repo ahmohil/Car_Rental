@@ -1,7 +1,9 @@
 ﻿using CarRental.Context;
 using CarRental.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace CarRental.Controllers
 {
@@ -15,25 +17,29 @@ namespace CarRental.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var posts = await _context.Posts.ToListAsync();
-            return View(posts);
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.UserId = userId;
+            
+            return View();
         }
 
-        [HttpGet("create")]
+        [HttpGet]
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
-        [HttpPost("create")]
-        public async Task<IActionResult> Create([Bind("Title,Content")] Post post)
+        [HttpPost]
+        [Authorize]
+        public IActionResult Create(Post post)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(post);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             return View(post);
