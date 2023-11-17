@@ -89,7 +89,7 @@ namespace CarRental.Areas.Identity.Pages.Account
         {
             if (User.Identity.IsAuthenticated)
             {
-                Response.Redirect("/");
+                Response.Redirect("/Car");
             }
             if (!string.IsNullOrEmpty(ErrorMessage))
             {

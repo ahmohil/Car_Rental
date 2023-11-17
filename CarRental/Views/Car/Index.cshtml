@@ -1,1 +1,34 @@
-﻿<h2>No Car to show so far</h2>
+﻿@model List<Car>
+
+<h2>Car List</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Variant</th>
+                <th>Daily Price</th>
+                <th>Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var car in Model)
+            {
+                <tr>
+                    <td>@car.Make</td>
+                    <td>@car.Model</td>
+                    <td>@car.Variant</td>
+                    <td>$ @car.DailyPrice</td>
+                    <td>@car.Color</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No cars available.</p>
+}

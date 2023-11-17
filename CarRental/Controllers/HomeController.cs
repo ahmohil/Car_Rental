@@ -21,8 +21,9 @@ namespace CarRental.Controllers
 
         public IActionResult Index()
         {
-            ViewData["UserID"]=_userManager.GetUserId(this.User);
-            return View();
+            //ViewData["UserID"]=_userManager.GetUserId(this.User);
+            //return View();
+            return RedirectToAction("Index", "Car");
         }
 
         public IActionResult Privacy()
