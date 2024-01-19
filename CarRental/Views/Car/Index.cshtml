@@ -1,34 +1,108 @@
-﻿@model List<Car>
+﻿@model List<CarRental.Models.Car>
 
-<h2>Car List</h2>
+<style>
+    .cards {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 25px;
+    }
 
-@if (Model != null && Model.Any())
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Make</th>
-                <th>Model</th>
-                <th>Variant</th>
-                <th>Daily Price</th>
-                <th>Color</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var car in Model)
-            {
-                <tr>
-                    <td>@car.Make</td>
-                    <td>@car.Model</td>
-                    <td>@car.Variant</td>
-                    <td>$ @car.DailyPrice</td>
-                    <td>@car.Color</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>No cars available.</p>
-}
+    .card {
+        background-color: #e3e9e6;
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .cardImg {
+        width: 100%;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        outline: 1px solid black;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover .cardImg {
+        transform: scale(1.1);
+    }
+
+    .heading {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-color {
+        background-color: #343a40 !important;
+        color: white;
+        padding-inline: 1rem;
+    }
+
+        .btn-color:hover {
+            background-color: #57626b !important;
+            color: white;
+        }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .primary {
+        background-color: #b9d331 !important;
+        padding-inline: 1rem;
+    }
+
+    .primary:hover {
+        background-color: #b4c947 !important;
+        padding-inline: 1rem;
+    }
+</style>
+
+
+
+<div>
+    <div class="heading">
+        <h3>Post Your Car</h3>
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Post Now</a>
+        </p>
+    </div>
+
+    <p>
+        <a class="btn btn-secondary" asp-action="SearchByMake">Search By Make</a>
+        <a class="btn btn-secondary" asp-action="SearchByModel">Search By Model</a>
+        <a class="btn btn-secondary" asp-action="SearchByYear">Search By Year</a>
+        <a class="btn btn-secondary" asp-action="SearchByColor">Search By Color</a>
+        <a class="btn btn-secondary" asp-action="SearchByPrice">Search By Price</a>
+        <a class="btn btn-success" asp-action="Available">Available</a>
+    </p>
+
+    <div class="cards">
+        @foreach (var item in Model)
+        {
+            <div class="card" style="card">
+                <img src="/images/placeholder.jpeg" class="cardImg" alt="Car Image">
+                <div class="card-body">
+                    <p class="card-text">
+                        <strong>Make: </strong>@Html.DisplayFor(modelItem => item.Make) <br />
+                        <strong>Model: </strong> @Html.DisplayFor(modelItem => item.Model) <br />
+                        <strong>Year: </strong> @Html.DisplayFor(modelItem => item.Year) <br />
+                        <strong>Color: </strong> @Html.DisplayFor(modelItem => item.Color)  <br />
+                        <strong>Price Per Day: </strong> @Html.DisplayFor(modelItem => item.Price) PKR  <br />
+                        <strong>Status: </strong> @(item.IsAvailable ? "Available" : "Not Available") <br />
+                        <strong>Owner: </strong> @(item.User != null ? item.User : "")
+                    </p>
+                    <div class="buttons">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-color btn-sm">Details</a>
+                        @if (item.IsAvailable && item.User != User.Identity.Name)
+                        {
+                            <a asp-action="Rent" asp-route-carId="@item.Id" class="btn primary btn-sm">Rent Now</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿@model Car
+
+<h1>Search Car By Year</h1>
+<div class="container">
+    <form asp-action="SearchByYear" method="post">
+     
+        <div class="mb-3">
+            <label asp-for="Year" class="form-label"></label>
+            <input asp-for="Year" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>

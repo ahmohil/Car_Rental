@@ -1,0 +1,14 @@
+﻿<h1>Search Car By Price</h1>
+<div class="container">
+    <form asp-action="SearchByPrice" method="post">
+        <div class="mb-3">
+            <label name="low" class="form-label">Low Limit</label>
+            <input name="low" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label name="high" class="form-label">High Limit</label>
+            <input name="high" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>

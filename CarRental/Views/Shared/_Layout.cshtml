@@ -3,56 +3,75 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CarRental</title>
+    <title>CarRental</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CarRental.styles.css" asp-append-version="true" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff; /* White background */
+            color: #000000; /* Black text color */
+        }
+
+        .navbar {
+            background-color: #343a40 !important; /* Dark grey navbar */
+            color: #ffffff; /* White text color */
+        }
+
+            .navbar .nav-link {
+                color: #ffffff; /* White link text color */
+            }
+
+
+        .header-logo {
+            height: 50px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom">
             <div class="container">
-                <a class="navbar-brand logo"  asp-area="" asp-controller="Home" asp-action="Index">CarRental</a>
-                <a class="navbar-brand nav-el" asp-area="" asp-controller="Car" asp-action="Index">Cars</a>
-                <a class="navbar-brand nav-el" asp-area="" asp-controller="Car" asp-action="AddCar">Add Car</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <img class="header-logo" src="/logo.png" alt="Sample Photo" />
+                <a class="navbar-brand text-light fw-bold" asp-area="" asp-controller="Home" asp-action="Index">CarRental</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial.cshtml" />
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Car" asp-action="Index">Cars</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Rental" asp-action="Index">Rentals</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Car" asp-action="MyCars">My Cars</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Rental" asp-action="MyRentals">My Rentals</a>
+                        </li>
+
+                        
+                    </ul>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container mt-4">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - CarRental - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-
-<style>
-    .logo {
-        margin-right: 50px;
-    }
-    .nav-el {
-        padding-inline: 12px;
-        padding-block: 5px;
-    }
-    .nav-el:hover {
-           background-color: rgb(0,0,0,0.1);
-    }
-</style>

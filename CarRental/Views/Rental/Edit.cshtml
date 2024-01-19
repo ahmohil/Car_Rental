@@ -1,0 +1,29 @@
+﻿@model CarRental.Models.Rental
+
+<h2>Edit</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="RentalDate"></label>
+                <input asp-for="RentalDate" class="form-control" />
+                <span asp-validation-for="RentalDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReturnDate"></label>
+                <input asp-for="ReturnDate" class="form-control" />
+                <span asp-validation-for="ReturnDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarId"></label>
+                <select asp-for="CarId" class="form-control" asp-items="ViewBag.Cars"></select>
+                <span asp-validation-for="CarId" class="text-danger"></span>
+            </div>
+          
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@model Car
+
+<div class="container">
+    <h1>Car Details</h1>
+    <dl class="row">
+        <dt class="col-sm-3">Id:</dt>
+        <dd class="col-sm-9">@Model.Id</dd>
+        <dt class="col-sm-3">Make:</dt>
+        <dd class="col-sm-9">@Model.Make</dd>
+        <dt class="col-sm-3">Model:</dt>
+        <dd class="col-sm-9">@Model.Model</dd>
+        <dt class="col-sm-3">Year:</dt>
+        <dd class="col-sm-9">@Model.Year</dd>
+        <dt class="col-sm-3">Price:</dt>
+        <dd class="col-sm-9">@Model.Price</dd>
+        <dt class="col-sm-3">Available:</dt>
+        <dd class="col-sm-9">@Model.IsAvailable</dd>
+    </dl>
+    <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+</div>

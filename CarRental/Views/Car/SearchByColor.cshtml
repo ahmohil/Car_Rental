@@ -1,0 +1,14 @@
+﻿@model Car
+
+<h1>Search Car By Color</h1>
+<div class="container">
+    <form asp-action="SearchByColor" method="post">
+        <div class="mb-3">
+            <label asp-for="Color" class="form-label"></label>
+            <input asp-for="Color" class="form-control" />
+        </div>
+      
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    
+</div>

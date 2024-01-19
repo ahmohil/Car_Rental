@@ -1,0 +1,85 @@
+﻿@model List<CarRental.Models.Rental>
+
+ <style>
+    .screen {
+        height: 100%;
+        width: 100%;
+    }
+
+    .card {
+        width: 100%;
+        margin-inline: 24px;
+        margin-block: 15px;
+        gap: 48px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        outline: none;
+        border: 0px;
+    }
+
+    .cardImg {
+        width: 100%;
+    }
+
+    .left {
+        width: 50%;
+        height: 300px;
+        border-radius: 24px;
+        overflow: hidden;
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+    }
+    .heading {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-color {
+        background-color: #343a40 !important;
+        color: white;
+        padding-inline: 1rem;
+    }
+
+    .btn-color:hover {
+            background-color: #57626b !important;
+            color: white;
+
+    }    
+    .buttons {
+        display:flex;
+        justify-content: space-around;
+    }
+
+    .content {
+        line-height: 2rem;
+    }
+    </style>
+
+    <div class="Screen">
+        @foreach (var rental in Model)
+        {
+            <div class="card">
+                <div class="left">
+                    <img alt="Car Image" src="~/images/placeholder.jpeg" class="cardImg" />
+                </div>
+                <div class="right">
+                    <h6 class="content">
+                        <strong>Make: </strong> @rental.Car.Make <br />
+                        <strong>Model: </strong> @rental.Car.Model <br />
+                        <strong>Year: </strong> @rental.Car.Year <br />
+                        <strong>Color: </strong> @rental.Car.Color <br />
+                        <strong>Rent Date: </strong> @rental.RentalDate <br />
+                        <strong>Return Date: </strong> @rental.ReturnDate <br />  
+                        <strong>Amount (After Discount): </strong> @rental.Amount PKR <br />
+                        <strong>Owner: </strong> @rental.Owner <br />
+                        <strong>Renter: </strong> @rental.Renter <br />
+                    </h6>
+            </div>
+            </div>
+            <hr />
+        }
+    </div>

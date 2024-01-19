@@ -1,0 +1,96 @@
+﻿@model List<CarRental.Models.Car>
+
+<style>
+    .cards {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 25px;
+    }
+
+    .card {
+        background-color: #e3e9e6;
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .cardImg {
+        width: 100%;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        outline: 1px solid black;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover .cardImg {
+        transform: scale(1.1);
+    }
+
+    .heading {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-color {
+        background-color: #343a40 !important;
+        color: white;
+        padding-inline: 1rem;
+    }
+
+        .btn-color:hover {
+            background-color: #57626b !important;
+            color: white;
+        }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .primary {
+        background-color: #b9d331 !important;
+        padding-inline: 1rem;
+    }
+
+    .primary:hover {
+        background-color: #b4c947 !important;
+        padding-inline: 1rem;
+    }
+</style>
+
+
+
+<div>
+    <div class="heading">
+        <h3>Post Your Car</h3>
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Post Now</a>
+        </p>
+    </div>
+
+    <div class="cards">
+        @foreach (var item in Model)
+        {
+            <div class="card" style="card">
+                <img src="/images/placeholder.jpeg" class="cardImg" alt="Car Image">
+                <div class="card-body">
+                    <p class="card-text">
+                        <strong>Make: </strong>@Html.DisplayFor(modelItem => item.Make) <br />
+                        <strong>Model: </strong> @Html.DisplayFor(modelItem => item.Model) <br />
+                        <strong>Year: </strong> @Html.DisplayFor(modelItem => item.Year) <br />
+                        <strong>Color: </strong> @Html.DisplayFor(modelItem => item.Color)  <br />
+                        <strong>Price Per Day: </strong> @Html.DisplayFor(modelItem => item.Price) PKR <br />
+                        <strong>Status: </strong> @(item.IsAvailable ? "Available" : "Not Available")
+                    </p>
+                    <div class="buttons">
+                        <a class="btn btn-color" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-color" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

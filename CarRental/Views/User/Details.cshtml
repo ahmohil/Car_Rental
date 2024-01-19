@@ -1,0 +1,29 @@
+﻿@model CarRental.Models.User
+
+<h2>User Details</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">User</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                <strong>@Html.DisplayNameFor(model => model.Username)</strong>
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+            <dt class="col-sm-2">
+                <strong>@Html.DisplayNameFor(model => model.Email)</strong>
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
